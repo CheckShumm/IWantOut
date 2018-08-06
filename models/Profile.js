@@ -101,7 +101,23 @@ const ProfileSchema = new Schema({
 	date: {
 		type: Date,
 		default: Date.now()
-	}
+	},
+	city: [
+		{
+			name: {
+				type: String,
+				required: true
+			},
+			slug: {
+				type: String,
+				required: true
+			},
+			ua_id: {
+				type: String,
+				required: true
+			}
+		}
+	]
 });
 
 module.exports = Profile = mongoose.model("profile", ProfileSchema);

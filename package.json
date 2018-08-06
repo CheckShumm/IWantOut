@@ -10,9 +10,17 @@
 	"author": "Nathan Shummoogum",
 	"license": "MIT",
 	"dependencies": {
+		"bcryptjs": "^2.4.3",
 		"body-parser": "^1.18.3",
+		"concurrently": "^3.6.1",
 		"express": "^4.16.3",
+		"gravatar": "^1.6.0",
+		"jsonwebtoken": "^8.3.0",
+		"mongoose": "^5.2.7",
+		"passport": "^0.4.0",
+		"passport-jwt": "^4.0.0",
 		"request": "^2.87.0",
+		"teleport-autocomplete": "^0.3.3",
 		"validator": "^10.5.0"
 	},
 	"devDependencies": {
