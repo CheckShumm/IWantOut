@@ -1,15 +1,21 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 
-// components
-import HomepageLayout from "./components/layout/Navbar";
+import { Image, Container } from "semantic-ui-react";
 
+// components
+
+import Landing from "./components/landing/Landing";
+import Footer from "./components/layout/Footer";
 class App extends Component {
 	render() {
 		return (
 			<div className="App">
-				<HomepageLayout />
+				<Landing />
+				<Container>
+					<Image src="./img/city.jpg" fluid />
+				</Container>
+				<Footer />
 			</div>
 		);
 	}
