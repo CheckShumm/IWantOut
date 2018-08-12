@@ -1,0 +1,36 @@
+img {
+	width: 100%;
+}
+
+.heading {
+	position: relative;
+	background: url("./img/city.jpeg") no-repeat;
+	background-size: cover;
+	background-position: center;
+	height: 100vh;
+}
+.login-form {
+	padding-top: 125px;
+}
+.component_container {
+	height: 90vh;
+}
+[] .landing-inner {
+	padding-top: 80px;
+}
+.heading-inner {
+	padding-top: 125px;
+}
+
+.landing-inner.middle {
+	height: 100%;
+}
+
+.dark-overlay {
+	background-color: rgba(0, 0, 0, 0.7);
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}

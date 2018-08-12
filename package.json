@@ -1,8 +1,7 @@
 {
 	"name": "iwantout",
 	"version": "1.0.0",
-	"description":
-		"A web app that suggests  destinations for those looking to move.",
+	"description": "A web app that suggests  destinations for those looking to move.",
 	"main": "server.js",
 	"scripts": {
 		"clint-install": "npm install --prefix client",
@@ -24,13 +23,11 @@
 		"passport": "^0.4.0",
 		"passport-jwt": "^4.0.0",
 		"request": "^2.87.0",
+		"semantic-ui-css": "^2.3.3",
 		"semantic-ui-react": "^0.82.2",
+		"teleport-autocomplete": "^0.3.3",
 		"validator": "^10.5.0",
 		"yarn": "^1.9.4"
-
-		"teleport-autocomplete": "^0.3.3",
-		"validator": "^10.5.0"
-
 	},
 	"devDependencies": {
 		"nodemon": "^1.18.3"
