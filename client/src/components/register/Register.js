@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import {
   Button,
@@ -10,33 +11,43 @@ import {
   Segment
 } from "semantic-ui-react";
 
-class Login extends Component {
+class Register extends Component {
   constructor() {
     super();
     this.state = {
       email: "",
       password: "",
+      password2: "",
       errors: {}
     };
   }
 
   onChange = (e, { name, value }) => this.setState({ [name]: value });
 
-  onSubmit = () => {
-    const { email, password } = this.state;
-    this.setState({ email: email, password: password });
-    console.log(this.state.email);
-    console.log(this.state.password);
+  onSubmit = e => {
+    e.preventDefault();
+
+    const newUser = {
+      email: this.state.email,
+      password: this.state.password,
+      password2: this.state.password2
+    };
+    console.log(newUser);
+    console.log(this.state.errors);
+    axios
+      .post("/api/users/register", newUser)
+      .then(res => console.log(res.data))
+      .catch(err => this.setState({ errors: err.response.data }));
   };
 
   render() {
-    const { email, password } = this.state;
+    const { email, password, password2, errors } = this.state;
     return (
-      <div className="login-form">
+      <div className="register-form">
         <style>{`
       body > div,
       body > div > div,
-      body > div > div > div.login-form {
+      body > div > div > div.register-form {
         height: 100%;
       }
     `}</style>
@@ -47,13 +58,14 @@ class Login extends Component {
         >
           <Grid.Column style={{ maxWidth: 450 }}>
             <Header as="h2" color="teal" textAlign="center">
-              <Image src="/logo.png" /> Log-in to your account
+              <Image src="/logo.png" /> Create your account
             </Header>
             <Form size="large">
               <Segment stacked>
                 <Form.Input
                   fluid
                   name="email"
+                  error={errors.email}
                   onChange={this.onChange}
                   icon="user"
                   value={email}
@@ -64,6 +76,7 @@ class Login extends Component {
                 <Form.Input
                   fluid
                   name="password"
+                  error={errors.password}
                   onChange={this.onChange}
                   value={password}
                   icon="lock"
@@ -72,8 +85,20 @@ class Login extends Component {
                   type="password"
                 />
 
+                <Form.Input
+                  fluid
+                  name="password2"
+                  error={errors.password2}
+                  onChange={this.onChange}
+                  value={password2}
+                  icon="lock"
+                  iconPosition="left"
+                  placeholder="Password Confirmation"
+                  type="password"
+                />
+
                 <Button onClick={this.onSubmit} color="teal" fluid size="large">
-                  Login
+                  Sign Up
                 </Button>
               </Segment>
             </Form>
@@ -87,4 +112,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default Register;
