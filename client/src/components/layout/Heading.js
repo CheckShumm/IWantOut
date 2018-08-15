@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Header, Icon } from "semantic-ui-react";
+import { Container, Header, Button, Icon } from "semantic-ui-react";
 
 class Heading extends Component {
   render() {
@@ -10,7 +10,7 @@ class Heading extends Component {
             <Container text textAlign="center">
               <Header
                 as="h1"
-                content="Find the City"
+                content="Find a City"
                 inverted
                 style={{
                   fontSize: "5em",
@@ -26,10 +26,12 @@ class Heading extends Component {
                   fontWeight: "normal"
                 }}
               />
-              <button className="ui inverted teal button huge">
-                Get Started
-                <Icon name="right arrow" />
-              </button>
+              <Button animated className="ui inverted teal button huge">
+                <Button.Content visible>Get Started</Button.Content>
+                <Button.Content hidden>
+                  <Icon name="arrow right" />
+                </Button.Content>
+              </Button>
             </Container>
           </div>
         </div>

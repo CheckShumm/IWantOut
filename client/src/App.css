@@ -9,16 +9,14 @@ img {
   background-position: center;
   height: 100vh;
 }
-.login-form {
-  padding-top: 125px;
+.auth-form {
+  padding-top: 32px;
 }
-.register-form {
-  padding-top: 125px;
-}
+
 .component_container {
   height: 90vh;
 }
-[] .landing-inner {
+.landing-inner {
   padding-top: 80px;
 }
 .heading-inner {
