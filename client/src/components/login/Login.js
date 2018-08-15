@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import {
   Button,
@@ -19,18 +20,24 @@ class Login extends Component {
       errors: {}
     };
   }
-
   onChange = (e, { name, value }) => this.setState({ [name]: value });
 
-  onSubmit = () => {
-    const { email, password } = this.state;
-    this.setState({ email: email, password: password });
-    console.log(this.state.email);
-    console.log(this.state.password);
+  onSubmit = e => {
+    e.preventDefault();
+
+    const userData = {
+      email: this.state.email,
+      password: this.state.password
+    };
+
+    axios
+      .post("/api/users/login", userData)
+      .then(res => console.log(res.data))
+      .catch(err => this.setState({ errors: err.response.data.errors }));
   };
 
   render() {
-    const { email, password } = this.state;
+    const { email, password, errors } = this.state;
     return (
       <div className="login-form">
         <style>{`
@@ -49,21 +56,23 @@ class Login extends Component {
             <Header as="h2" color="teal" textAlign="center">
               <Image src="/logo.png" /> Log-in to your account
             </Header>
-            <Form size="large">
+            <Form size="large" error={errors}>
               <Segment stacked>
                 <Form.Input
                   fluid
                   name="email"
+                  error={errors.email}
                   onChange={this.onChange}
                   icon="user"
                   value={email}
                   iconPosition="left"
                   placeholder="E-mail address"
                 />
-
+                {errors.email && <Message error content={errors.email} />}
                 <Form.Input
                   fluid
                   name="password"
+                  error={errors.password}
                   onChange={this.onChange}
                   value={password}
                   icon="lock"
@@ -71,7 +80,7 @@ class Login extends Component {
                   placeholder="Password"
                   type="password"
                 />
-
+                {errors.password && <Message error content={errors.password} />}
                 <Button onClick={this.onSubmit} color="teal" fluid size="large">
                   Login
                 </Button>

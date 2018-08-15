@@ -33,15 +33,15 @@ class Register extends Component {
       password2: this.state.password2
     };
     console.log(newUser);
-    console.log(this.state.errors);
     axios
       .post("/api/users/register", newUser)
       .then(res => console.log(res.data))
-      .catch(err => this.setState({ errors: err.response.data }));
+      .catch(err => this.setState({ errors: err.response.data.errors }));
   };
 
   render() {
     const { email, password, password2, errors } = this.state;
+
     return (
       <div className="register-form">
         <style>{`
@@ -60,7 +60,7 @@ class Register extends Component {
             <Header as="h2" color="teal" textAlign="center">
               <Image src="/logo.png" /> Create your account
             </Header>
-            <Form size="large">
+            <Form size="large" error={errors}>
               <Segment stacked>
                 <Form.Input
                   fluid
@@ -72,7 +72,7 @@ class Register extends Component {
                   iconPosition="left"
                   placeholder="E-mail address"
                 />
-
+                {errors.email && <Message error content={errors.email} />}
                 <Form.Input
                   fluid
                   name="password"
@@ -84,7 +84,7 @@ class Register extends Component {
                   placeholder="Password"
                   type="password"
                 />
-
+                {errors.password && <Message error content={errors.password} />}
                 <Form.Input
                   fluid
                   name="password2"
@@ -96,7 +96,9 @@ class Register extends Component {
                   placeholder="Password Confirmation"
                   type="password"
                 />
-
+                {errors.password2 && (
+                  <Message error content={errors.password2} />
+                )}
                 <Button onClick={this.onSubmit} color="teal" fluid size="large">
                   Sign Up
                 </Button>
