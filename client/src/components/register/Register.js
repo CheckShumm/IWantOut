@@ -29,17 +29,17 @@ class Register extends Component {
 		};
 	}
 
+	componentWillReceiveProps = nextProps => {
+		if (nextProps.errors) {
+			this.setState({ errors: nextProps.errors });
+		}
+	};
+
 	componentDidMount = () => {
 		if (this.props.auth.isAuthenticated) {
 			this.props.history.push("/");
 		} else {
 			this.setState({ visible: true });
-		}
-	};
-
-	componentWillReceieveProps = nextProps => {
-		if (nextProps.errors) {
-			this.setState({ errors: nextProps.errors });
 		}
 	};
 
@@ -57,8 +57,7 @@ class Register extends Component {
 	};
 
 	render() {
-		const { errors } = this.props;
-		const { email, password, password2, visible } = this.state;
+		const { email, password, password2, visible, errors } = this.state;
 
 		return (
 			<div className="heading">
@@ -130,7 +129,7 @@ class Register extends Component {
 											</Button>
 										</Segment>
 									</Form>
-									<Message>Already have an account? Sign Up</Message>
+									<Message>Already have an account? Log In</Message>
 								</Grid.Column>
 							</Transition>
 						</Grid>
