@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import TeleportAutoComplete from "teleport-autocomplete";
-import { Search, Grid } from "semantic-ui-react";
-
+import TeleportAutoComplete from "../../utils/autocomplete";
+import { Input } from "semantic-ui-react";
+import isEmpty from "../../validation/is-empty";
 import _ from "lodash";
 
 class CitySearch extends Component {
@@ -21,8 +21,7 @@ class CitySearch extends Component {
 			maxItems: 5,
 			embed: "",
 			geoLocate: false,
-			nopick: true,
-			itemTemplate: {}
+			nopick: true
 		});
 		this.setState({ teleport: autoComplete });
 	};
@@ -65,21 +64,15 @@ class CitySearch extends Component {
 	render() {
 		const { isLoading, value, results } = this.state;
 		return (
-			<Grid>
-				<Grid.Column width={6}>
-					<Search
-						id="location-input"
-						loading={isLoading}
-						onResultSelect={this.handleResultSelect}
-						onSearchChange={_.debounce(this.handleSearchChange, 500, {
-							leading: true
-						})}
-						results={results}
-						value={value}
-						{...this.props}
-					/>
-				</Grid.Column>
-			</Grid>
+			<Input
+				size="big"
+				type="text"
+				icon={!isLoading && isEmpty(value) ? "search" : ""}
+				onChange={_.debounce(this.handleSearchChange, 500, { leading: true })}
+				id="location-input"
+				name="field"
+				placeholder="Search..."
+			/>
 		);
 	}
 }
