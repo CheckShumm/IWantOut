@@ -1,29 +1,23 @@
 import React, { Component } from "react";
 import TeleportAutoComplete from "../../utils/autocomplete";
-import { Input } from "semantic-ui-react";
+import { Input, Button } from "semantic-ui-react";
 import isEmpty from "../../validation/is-empty";
-import _ from "lodash";
 
 class CitySearch extends Component {
 	constructor() {
 		super();
 		this.state = {
-			teleport: {},
-			results: [],
+			city: {},
 			value: "",
 			isLoading: false
 		};
 	}
 
 	componentDidMount = () => {
-		const autoComplete = new TeleportAutoComplete({
-			el: "#location-input",
-			maxItems: 5,
-			embed: "",
-			geoLocate: false,
-			nopick: true
+		TeleportAutoComplete.init("#location-input").on("change", value => {
+			this.setState({ city: value });
+			console.log("key pressed");
 		});
-		this.setState({ teleport: autoComplete });
 	};
 
 	componentWillMount() {
@@ -33,46 +27,36 @@ class CitySearch extends Component {
 	resetComponent = () =>
 		this.setState({ isLoading: false, results: [], value: "" });
 
-	handleResultSelect = (e, { result }) => {
-		this.setState({ value: result.title });
+	onClick = e => {
+		console.log(this.state.city);
+		const teleport =
+			"https://api.teleport.org/api/urban_areas/slug:" +
+			this.state.city.uaSlug +
+			"/scores";
+		fetch(teleport)
+			.then(resp => resp.json())
+			.then(i => console.log(i));
 	};
-
-	handleSearchChange = (e, { value }) => {
-		this.setState({ isLoading: true, value });
-		let cityArray = [];
-		let teleport = this.state.teleport.results;
-
-		for (let i = 0; i < teleport.length; i++) {
-			const city = {
-				title: teleport[i].title,
-				name: teleport[i].name,
-				id: teleport[i].geonameId
-			};
-			cityArray.push(city);
-		}
-
-		setTimeout(() => {
-			if (this.state.value.length < 1) return this.resetComponent();
-
-			this.setState({
-				isLoading: false,
-				results: cityArray
-			});
-		}, 300);
-	};
-
 	render() {
-		const { isLoading, value, results } = this.state;
+		const { isLoading, value } = this.state;
 		return (
-			<Input
-				size="big"
-				type="text"
-				icon={!isLoading && isEmpty(value) ? "search" : ""}
-				onChange={_.debounce(this.handleSearchChange, 500, { leading: true })}
-				id="location-input"
-				name="field"
-				placeholder="Search..."
-			/>
+			<div>
+				<Input
+					action={
+						<Button
+							color="teal"
+							icon="search"
+							content="Search"
+							onClick={this.onClick}
+						/>
+					}
+					size="big"
+					type="text"
+					id="location-input"
+					name="field"
+					placeholder="Search..."
+				/>
+			</div>
 		);
 	}
 }

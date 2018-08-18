@@ -1,33 +1,29 @@
 import React, { Component } from "react";
 import CitySearch from "./CitySearch";
 import CityResults from "./CityResults";
+import CityHeading from "./layout/CityHeading";
 import { Grid, Header } from "semantic-ui-react";
 class Cities extends Component {
 	render() {
 		return (
-			<div className="heading-inner">
-				<Grid centered columns={2}>
-					<Grid.Column>
-						<Header
-							as="h3"
-							content="Find a City"
-							style={{
-								fontSize: "5em",
-								fontWeight: "normal"
-							}}
-						/>
-					</Grid.Column>
-					<Grid.Row centered columns={2}>
-						<Grid.Column>
-							<CitySearch />
-						</Grid.Column>
-					</Grid.Row>
-					<Grid.Row centered columns={2}>
-						<Grid.Column>
-							<CityResults />
-						</Grid.Column>
-					</Grid.Row>
-				</Grid>
+			<div>
+				<div className="city-heading">
+					<div className=" banner-dark-overlay  text-light">
+						<div className="heading-inner">
+							<div class="ui one column stackable center aligned page grid">
+								<div class="column twelve wide">
+									<CityHeading />
+								</div>
+								<CitySearch />
+							</div>
+						</div>
+					</div>
+				</div>
+				<div className="ui one column stackable center aligned page grid">
+					<div className="column twelve city-results">
+						<CityResults />
+					</div>
+				</div>
 			</div>
 		);
 	}
