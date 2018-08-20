@@ -17,7 +17,7 @@ import isEmpty from "../../../validation/is-empty";
 
 class CityQuality extends Component {
   render() {
-    const city = this.props.city.city;
+    const city = this.props.city.quality;
     const cityScores = isEmpty(city) ? [] : city.categories;
     const citySummary = isEmpty(city)
       ? "Quality of Life"
@@ -29,17 +29,16 @@ class CityQuality extends Component {
       graphData.push({
         name: cityScores[i].name,
         score: cityScores[i].score_out_of_10,
-        color: cityScores[i].color
+        fill: cityScores[i].color
       });
       i++;
       graphData2.push({
         name: cityScores[i].name,
         score: cityScores[i].score_out_of_10,
-        color: cityScores[i].color
+        fill: cityScores[i].color
       });
     }
 
-    console.log(graphData);
     return (
       <div>
         <Grid>
@@ -62,7 +61,7 @@ class CityQuality extends Component {
                 <Tooltip />
                 <Bar dataKey="score" barSize={20}>
                   {graphData.map((entry, index) => {
-                    return <Cell key={entry.name} fill={entry.color} />;
+                    return <Cell key={entry.name} fill={entry.fill} />;
                   })}
                 </Bar>
               </ComposedChart>
@@ -80,7 +79,7 @@ class CityQuality extends Component {
                 <Tooltip />
                 <Bar dataKey="score" barSize={20}>
                   {graphData2.map((entry, index) => {
-                    return <Cell fill={entry.color} />;
+                    return <Cell key={entry.name} fill={entry.fill} />;
                   })}
                 </Bar>
               </ComposedChart>
