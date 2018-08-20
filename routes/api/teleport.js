@@ -68,7 +68,7 @@ router.get("/city/:city_name/urban_area/:ua_id/scores", (req, res) => {
 // @route   GET api/teleport/city/:city_name/urban/:ua_id/salaries
 // @desc    get city details from ua_id
 // @access  Public route
-router.get("/city/:city_name/urban_area/:ua_id/salaries", (req, res) => {
+router.get("/city/:city_name/urban_area/salaries", (req, res) => {
   const salariesURL =
     teleport + "/urban_areas/slug:" + req.params.city_name + "/salaries";
 
@@ -82,7 +82,7 @@ router.get("/city/:city_name/urban_area/:ua_id/salaries", (req, res) => {
 // @route   GET api/teleport/city/:city_name/urban/:ua_id/details
 // @desc    get city details from ua_id
 // @access  Public route
-router.get("/city/:city_name/urban_area/:ua_id/details", (req, res) => {
+router.get("/city/:city_name/urban_area/details", (req, res) => {
   const detailsURL =
     teleport + "/urban_areas/slug:" + req.params.city_name + "/details";
 
@@ -96,7 +96,7 @@ router.get("/city/:city_name/urban_area/:ua_id/details", (req, res) => {
 // @route   GET api/teleport/city/:city_name/urban/:ua_id/images
 // @desc    get city images from ua_id
 // @access  Public route
-router.get("/city/:city_name/urban_area/:ua_id/images", (req, res) => {
+router.get("/city/:city_name/urban_area/images", (req, res) => {
   const imagesURL =
     teleport + "/urban_areas/slug:" + req.params.city_name + "/images";
 
