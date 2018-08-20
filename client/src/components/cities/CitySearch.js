@@ -1,27 +1,25 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { withRouter } from "react-router-dom";
+
 import { connect } from "react-redux";
 import { setCity } from "../../actions/cityActions";
 
 import TeleportAutoComplete from "../../utils/autocomplete";
 import { Input, Button } from "semantic-ui-react";
-import isEmpty from "../../validation/is-empty";
 
 class CitySearch extends Component {
   constructor() {
     super();
     this.state = {
       city: {},
-      value: "",
-      isLoading: false
+      value: ""
     };
   }
 
   componentDidMount = () => {
     TeleportAutoComplete.init("#location-input").on("change", value => {
       this.setState({ city: value });
-      console.log("key pressed");
+      this.props.setCity(this.state.city);
     });
   };
 
@@ -44,7 +42,6 @@ class CitySearch extends Component {
     this.props.setCity(this.state.city);
   };
   render() {
-    const { isLoading, value } = this.state;
     return (
       <div>
         <Input
@@ -73,7 +70,7 @@ CitySearch.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  city: state.auth
+  city: state.city
 });
 
 export default connect(
