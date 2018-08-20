@@ -43,7 +43,7 @@ router.get("/test", (req, res) => {
 router.get("/city/:city_name/urban_area/scores", (req, res) => {
   const scoresURL =
     teleport + "/urban_areas/slug:" + req.params.city_name + "/scores";
-  console.log("HERE");
+
   // url using ua_id
   // 	const scoresURL =
   //  teleport + "/urban_areas/teleport%3A" + req.params.ua_id + "/scores";
