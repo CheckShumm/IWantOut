@@ -7,6 +7,8 @@ import { setCity, setCityQuality } from "../../actions/cityActions";
 import TeleportAutoComplete from "../../utils/autocomplete";
 import { Input, Button } from "semantic-ui-react";
 
+import isEmpty from "../../validation/is-empty";
+
 class CitySearch extends Component {
   constructor() {
     super();
@@ -20,7 +22,11 @@ class CitySearch extends Component {
     TeleportAutoComplete.init("#location-input").on("change", value => {
       this.setState({ city: value });
       this.props.setCity(this.state.city);
-      this.props.setCityQuality(this.state.city);
+      if (!isEmpty(this.state.city)) {
+        if (!isEmpty(this.state.city.uaSlug)) {
+          this.props.setCityQuality(this.state.city);
+        }
+      }
     });
   };
 
