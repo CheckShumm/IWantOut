@@ -2,7 +2,11 @@ import React, { Component } from "react";
 
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { setCity, setCityQuality } from "../../actions/cityActions";
+import {
+  setCity,
+  setCityQuality,
+  setCityImages
+} from "../../actions/cityActions";
 
 import TeleportAutoComplete from "../../utils/autocomplete";
 import { Input, Button } from "semantic-ui-react";
@@ -25,6 +29,7 @@ class CitySearch extends Component {
       if (!isEmpty(this.state.city)) {
         if (!isEmpty(this.state.city.uaSlug)) {
           this.props.setCityQuality(this.state.city);
+          this.props.setCityImages(this.state.city);
         }
       }
     });
@@ -82,5 +87,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { setCity, setCityQuality }
+  { setCity, setCityQuality, setCityImages }
 )(CitySearch);

@@ -7,6 +7,7 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
+  LabelList,
   ComposedChart,
   Legend
 } from "recharts";
@@ -26,6 +27,9 @@ class CityQuality extends Component {
     const graphData = [];
     const graphData2 = [];
     for (let i = 0; i < cityScores.length / 2; i++) {
+      let score = parseFloat(
+        Math.round(cityScores[i].score_out_of_10 * 100) / 100
+      ).toFixed(2);
       graphData.push({
         name: cityScores[i].name,
         score: cityScores[i].score_out_of_10,
@@ -54,12 +58,13 @@ class CityQuality extends Component {
                 width={400}
                 height={300}
                 data={graphData}
-                margin={{ right: 16, left: 16, bottom: 16 }}
+                margin={{ right: 16, left: 32, bottom: 16 }}
               >
                 <XAxis type="number" />
                 <YAxis dataKey="name" type="category" />
                 <Tooltip />
                 <Bar dataKey="score" barSize={20}>
+                  <LabelList dataKey="score" position="right" />
                   {graphData.map((entry, index) => {
                     return <Cell key={entry.name} fill={entry.fill} />;
                   })}
@@ -72,12 +77,13 @@ class CityQuality extends Component {
                 width={400}
                 height={300}
                 data={graphData2}
-                margin={{ right: 16, left: 16, bottom: 16 }}
+                margin={{ right: 16, bottom: 16 }}
               >
                 <XAxis type="number" />
                 <YAxis dataKey="name" type="category" />
                 <Tooltip />
                 <Bar dataKey="score" barSize={20}>
+                  <LabelList dataKey="score" position="right" />
                   {graphData2.map((entry, index) => {
                     return <Cell key={entry.name} fill={entry.fill} />;
                   })}
