@@ -13,13 +13,6 @@ img {
   padding-top: 32px;
 }
 
-.city-heading {
-  position: relative;
-  background: url("./img/city-banner.jpg") no-repeat;
-  background-size: cover;
-  background-position: center;
-  height: 50vh;
-}
 .cities-container {
   align-content: center;
   color: #fff;
