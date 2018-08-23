@@ -35,6 +35,20 @@ img {
   height: 70vh;
   margin-bottom: 50px;
 }
+.dashboard-segment {
+  height: 300px;
+  width: 300px;
+}
+
+.dashboard-container {
+  margin: 50px;
+}
+
+.dashboard-icon {
+  height: 150px;
+  width: 150px;
+  margin-bottom: 50px;
+}
 
 .landing-inner.middle {
   height: 100%;
