@@ -11,6 +11,8 @@ import Footer from "./components/layout/Footer";
 import Login from "./components/login/Login";
 import Cities from "./components/cities/Cities";
 import Register from "./components/register/Register";
+import Profile from "./components/profile/Profile";
+import Dashboard from "./components/dashboard/Dashboard";
 import store from "./store";
 
 class App extends Component {
@@ -25,6 +27,8 @@ class App extends Component {
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/cities" component={Cities} />
+              <Route exact path="/profile" component={Profile} />
+              <Route exact path="/dashboard" component={Dashboard} />
               <Footer />
             </div>
           </div>
