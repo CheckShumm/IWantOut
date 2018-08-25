@@ -64,7 +64,7 @@ class Navbar extends Component {
           </Button>
         </Link>
         <Link to="/register">
-          <Button inverted primary style={{ marginLeft: "0.5em" }}>
+          <Button inverted color="purple" style={{ marginLeft: "0.5em" }}>
             Sign Up
           </Button>
         </Link>

@@ -24,9 +24,7 @@ img {
 .component_container {
   height: 150vh;
 }
-.landing-inner {
-  padding-top: 80px;
-}
+
 .heading-inner {
   padding-top: 125px;
 }
@@ -40,6 +38,11 @@ img {
   width: 300px;
 }
 
+.profile-container {
+  margin: 50px;
+  width: 70vh;
+  height: 100vh;
+}
 .dashboard-container {
   margin: 50px;
 }
