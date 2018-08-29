@@ -1,7 +1,12 @@
 import axios from "axios";
 
 // import types
-import { GET_PROFILE, CLEAR_CURRENT_PROFILE, SET_PROFILE } from "./types";
+import {
+  GET_PROFILE,
+  CLEAR_CURRENT_PROFILE,
+  SET_PROFILE,
+  GET_ERRORS
+} from "./types";
 
 // get profile
 export const getProfile = () => dispatch => {
@@ -27,7 +32,7 @@ export const setProfile = profileData => dispatch => {
     .post(`/api/profile`)
     .then(res => {
       dispatch({
-        type: GET_PROFILE,
+        type: SET_PROFILE,
         payload: res.data
       });
     })

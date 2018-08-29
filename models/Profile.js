@@ -27,6 +27,10 @@ const ProfileSchema = new Schema({
     type: String,
     required: true
   },
+  climate: {
+    type: String,
+    required: true
+  },
   costOfLiving: {
     type: String,
     required: true
