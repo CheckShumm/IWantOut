@@ -8,6 +8,7 @@ export const SET_CURRENT_USER = "SET_CURRENT_USERS";
 export const SET_CITY = "SET_CITY";
 export const SET_CITY_QUALITY = "SET_CITY_QUALITY";
 export const SET_CITY_IMAGE = "SET_CITY_IMAGE";
+export const SET_CITY_HOUSING = "SET_CITY_HOUSING";
 
 // Profile types
 export const GET_PROFILE = "GET_PROFILE";
