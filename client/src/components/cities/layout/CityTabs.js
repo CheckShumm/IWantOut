@@ -1,71 +1,77 @@
-import React from "react";
-import { Tab } from "semantic-ui-react";
+import React, { Component } from "react";
+
+import { Menu, Icon, Segment } from "semantic-ui-react";
+
 import CityQuality from "../results/CityQuality";
 import CityHousing from "../results/CityHousing";
-const panes = [
-	{
-		menuItem: {
-			key: "quality",
-			icon: "star",
-			content: "Quality"
-		},
-		render: () => (
-			<Tab.Pane>
-				{" "}
-				<CityQuality />{" "}
-			</Tab.Pane>
-		)
-	},
-	{
-		menuItem: {
-			key: "housing",
-			icon: "home",
-			content: "Housing"
-		},
-		render: () => (
-			<Tab.Pane>
-				{" "}
-				<CityHousing />{" "}
-			</Tab.Pane>
-		)
-	},
-	{
-		menuItem: {
-			key: "careers",
-			icon: "briefcase",
-			content: "Careers"
-		},
-		render: () => <Tab.Pane> Careers </Tab.Pane>
-	},
-	{
-		menuItem: {
-			key: "education",
-			icon: "university",
-			content: "Education"
-		},
-		render: () => <Tab.Pane> Education </Tab.Pane>
-	},
-	{
-		menuItem: {
-			key: "weather",
-			icon: "cloud",
-			content: "Weather"
-		},
-		render: () => <Tab.Pane> Education </Tab.Pane>
-	}
-];
 
-const CityTabs = () => (
-	<div>
-		<Tab
-			menu={{
-				color: "blue",
-				attatched: "false",
-				fluid: true
-			}}
-			panes={panes}
-		/>
-	</div>
-);
+class CityTabs extends Component {
+  constructor() {
+    super();
+    this.state = { activeItem: "quality" };
+  }
+
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
+
+  render() {
+    const { activeItem } = this.state;
+    return (
+      <div>
+        <div className="ui one column stackable center aligned page grid">
+          <div className="column twelve wide">
+            <div className="ui five item menu">
+              <Menu borderless color="blue" size="mini" compact icon="labeled">
+                <Menu.Item
+                  name="quality"
+                  active={activeItem === "quality"}
+                  onClick={this.handleItemClick}
+                >
+                  <Icon name="star" />
+                  Quality
+                </Menu.Item>
+                <Menu.Item
+                  name="housing"
+                  active={activeItem === "housing"}
+                  onClick={this.handleItemClick}
+                >
+                  <Icon name="home" />
+                  Housing
+                </Menu.Item>
+                <Menu.Item
+                  name="careers"
+                  active={activeItem === "careers"}
+                  onClick={this.handleItemClick}
+                >
+                  <Icon name="briefcase" />
+                  Careers
+                </Menu.Item>
+                <Menu.Item
+                  name="education"
+                  active={activeItem === "education"}
+                  onClick={this.handleItemClick}
+                >
+                  <Icon name="university" />
+                  Education
+                </Menu.Item>
+                <Menu.Item
+                  name="weather"
+                  active={activeItem === "weather"}
+                  onClick={this.handleItemClick}
+                >
+                  <Icon name="cloud" />
+                  Weather
+                </Menu.Item>
+              </Menu>
+            </div>
+          </div>
+        </div>
+        <Segment>
+          {activeItem === "quality" ? <CityQuality /> : null}
+          {activeItem === "housing" ? <CityHousing /> : null}
+        </Segment>
+      </div>
+    );
+  }
+}
 
 export default CityTabs;
