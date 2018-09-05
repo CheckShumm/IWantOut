@@ -9,6 +9,7 @@ export const SET_CITY = "SET_CITY";
 export const SET_CITY_QUALITY = "SET_CITY_QUALITY";
 export const SET_CITY_IMAGE = "SET_CITY_IMAGE";
 export const SET_CITY_HOUSING = "SET_CITY_HOUSING";
+export const SET_CITY_COST_OF_LIVING = "SET_CITY_COST_OF_LIVING";
 
 // Profile types
 export const GET_PROFILE = "GET_PROFILE";
