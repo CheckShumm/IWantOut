@@ -40,9 +40,11 @@ export const setCityHousing = city => dispatch => {
   axios
     .get(`/api/teleport/city/${city.uaSlug}/urban_area/details/housing`)
     .then(res => {
+      let housingData = res.data[0].data;
+      housingData.splice(-1, 1);
       dispatch({
         type: SET_CITY_HOUSING,
-        payload: res.data
+        payload: housingData
       });
     })
     .catch(err =>
@@ -60,7 +62,7 @@ export const setCityCostOfLiving = city => dispatch => {
     .then(res => {
       dispatch({
         type: SET_CITY_COST_OF_LIVING,
-        payload: res.data
+        payload: res.data[0].data
       });
     })
     .catch(err =>
