@@ -5,7 +5,9 @@ import { connect } from "react-redux";
 import {
   setCity,
   setCityQuality,
-  setCityImages
+  setCityImages,
+  setCityCostOfLiving,
+  setCityHousing
 } from "../../actions/cityActions";
 
 import TeleportAutoComplete from "../../utils/autocomplete";
@@ -30,6 +32,8 @@ class CitySearch extends Component {
         if (!isEmpty(this.state.city.uaSlug)) {
           this.props.setCityQuality(this.state.city);
           this.props.setCityImages(this.state.city);
+          this.props.setCityHousing(this.props.city.city);
+          this.props.setCityCostOfLiving(this.props.city.city);
         }
       }
     });
@@ -78,6 +82,10 @@ class CitySearch extends Component {
 
 CitySearch.propTypes = {
   setCity: PropTypes.func.isRequired,
+  setCityQuality: PropTypes.func.isRequired,
+  setCityImages: PropTypes.func.isRequired,
+  setCityCostOfLiving: PropTypes.func.isRequired,
+  setCityHousing: PropTypes.func.isRequired,
   city: PropTypes.object.isRequired
 };
 
@@ -87,5 +95,11 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { setCity, setCityQuality, setCityImages }
+  {
+    setCity,
+    setCityQuality,
+    setCityImages,
+    setCityCostOfLiving,
+    setCityHousing
+  }
 )(CitySearch);

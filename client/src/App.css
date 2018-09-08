@@ -22,7 +22,8 @@ img {
   min-height: 6em;
 }
 .component_container {
-  height: 100vh;
+  display: block;
+  overflow: auto;
 }
 .component-container-small {
   height: 50vh;
@@ -32,9 +33,7 @@ img {
   padding-top: 125px;
 }
 .city-results {
-  position: relative;
-  height: 70vh;
-  margin-bottom: 50px;
+  height: 60vh;
 }
 .dashboard-segment {
   height: 300px;
