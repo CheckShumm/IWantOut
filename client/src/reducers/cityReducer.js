@@ -3,13 +3,15 @@ import {
   SET_CITY_QUALITY,
   SET_CITY_IMAGE,
   SET_CITY_HOUSING,
-  SET_CITY_COST_OF_LIVING
+  SET_CITY_COST_OF_LIVING,
+  SET_CITY_CLIMATE
 } from "../actions/types";
 
 const initialState = {
   isUrban: false,
   city: {},
   quality: {},
+  climate: {},
   housing: {},
   costOfLiving: {},
   image: {}
@@ -31,6 +33,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         image: action.payload
+      };
+    case SET_CITY_CLIMATE:
+      return {
+        ...state,
+        climate: action.payload
       };
     case SET_CITY_HOUSING:
       return {

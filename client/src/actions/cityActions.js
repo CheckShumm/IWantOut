@@ -7,7 +7,8 @@ import {
   SET_CITY_QUALITY,
   SET_CITY_IMAGE,
   SET_CITY_HOUSING,
-  SET_CITY_COST_OF_LIVING
+  SET_CITY_COST_OF_LIVING,
+  SET_CITY_CLIMATE
 } from "./types";
 import isEmpty from "../validation/is-empty";
 export const setCity = city => dispatch => {
@@ -62,6 +63,24 @@ export const setCityCostOfLiving = city => dispatch => {
     .then(res => {
       dispatch({
         type: SET_CITY_COST_OF_LIVING,
+        payload: res.data[0].data
+      });
+    })
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data.errors
+      })
+    );
+};
+
+// retrieve city cost of living
+export const setCityClimate = city => dispatch => {
+  axios
+    .get(`/api/teleport/city/${city.uaSlug}/urban_area/details/climate`)
+    .then(res => {
+      dispatch({
+        type: SET_CITY_CLIMATE,
         payload: res.data[0].data
       });
     })
