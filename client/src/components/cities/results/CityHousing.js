@@ -52,6 +52,7 @@ class CityHousing extends Component {
   };
 
   render() {
+    // housing in bar chart, col in expandable table
     const housingData = this.getGraphData(this.props.city.housing);
     const colData = this.getGraphData(this.props.city.costOfLiving);
     console.log(housingData);
